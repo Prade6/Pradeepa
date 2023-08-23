@@ -1,0 +1,71 @@
+import java.io.*; 
+import java.util.*; 
+class encoding 
+{ 
+ 
+public static void main(String[] args) 
+{ 
+String s1,s2,s3; 
+Scanner scan=new Scanner(System.in); 
+s1=scan.nextLine(); 
+s2=scan.nextLine(); 
+s3=scan.nextLine(); 
+encode(s1,s2,s3); 
+} 
+public static void encode(String input1,String input2,String input3) 
+{ 
+//String s[]=new String[3]; 
+String s[]={input1,input2,input3}; 
+//String s[1]=input2; 
+//String s[2]=input3; 
+String first[]=new String[3]; 
+String middle[]=new String[3]; 
+String end[]=new String[3]; 
+for(int i=0;i<3;i++) 
+{ 
+ int len=s[i].length(); 
+int j,k; 
+if(len%3==0) 
+{ 
+j=len/3; 
+k=len-(2*j); 
+first[i]=s[i].substring(0,j); 
+middle[i]=s[i].substring(j,j+k); 
+end[i]=s[i].substring(j+k,len); 
+} 
+else if(len%3==1) 
+{ 
+j=len/3; 
+k=len-(2*j); 
+first[i]=s[i].substring(0,j); 
+middle[i]=s[i].substring(j,k+j); 
+end[i]=s[i].substring(j+k,len); 
+} 
+else 
+{ 
+j=(len/3)+1; 
+k=len-(2*j); 
+first[i]=s[i].substring(0,j); 
+middle[i]=s[i].substring(j,k+j); 
+end[i]=s[i].substring(j+k,len); 
+} 
+} 
+String output1=end[0]+first[1]+middle[2]; 
+String output2=first[0]+middle[1]+end[2]; 
+String output3=middle[0]+end[1]+first[2]; 
+String out=""; 
+char ch[]=output3.toCharArray(); 
+for(int i=0;i<output3.length();i++) 
+{ 
+if(Character.isLowerCase(ch[i])) 
+ch[i]=Character.toUpperCase(ch[i]); 
+else 
+ch[i]=Character.toLowerCase(ch[i]); 
+out+=ch[i]; 
+} 
+//output3=Character.toString(ch); 
+System.out.println(output1); 
+System.out.println(output2); 
+System.out.println(out); 
+} 
+}
